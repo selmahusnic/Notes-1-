@@ -1,0 +1,138 @@
+<!DOCTYPE html "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sign in</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+form {
+    border: 3px solid #f1f1f1;
+    margin-left: 30%;
+    margin-right:30%;
+    margin-top:10%
+}
+
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+.container {
+    padding: 16px;
+}
+
+span.psw {
+    float: center;
+    padding-top: 16px;
+    margin-left: 35%;
+}
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("button").click(function(){
+        $.post("mysql://localhost:3306/Notes_Database",
+        {
+          email: "email",
+          username: "username",
+          password: "password"
+          psw-repeat: "psw-repeat"
+
+          if (password == psw-repeat)
+        },
+        function(data,status){
+            alert("Data: " + data + "\nStatus: " + status);
+        });
+    });
+});
+
+   <!-- function login() {
+  var user = document.getElementById("username").value;
+  var pass = document.getElementById("psw").value;
+
+  var req = new XMLHttpRequest();
+  req.open("POST", "/Notes/Notes_main/templates/SignIn.html", true);
+  req.setRequestHeader('Content-Type', 'application/json');
+  req.withCredentials = true;
+  req.onreadystatechange = function() {
+    if (req.readyState == XMLHttpRequest.DONE) {
+      if (req.status == 200) {
+        document.getElementById("log_form").style.display = 'none';
+        document.getElementById("logged_user").style.display = 'block';
+        document.getElementById("logged_user").textContent = document.getElementById("user_id").value;
+        document.getElementById("logout_button").style.display = 'block';
+        hide_error();
+        function newDoc() {
+    window.location.assign("/Notes/Notes_main/templates/NotesApp.html")
+}
+      }
+      else if (req.status == 401) {
+        document.getElementById('error_text').textContent = "User/password is incorrect";
+        document.getElementById('error').style.display="";
+      }
+    }
+  }
+  req.send(JSON.stringify({username: user, password: pass}));
+}-->
+
+function login(){
+var url = "/Notes/Notes_main/templates/SignIn.html";
+window.location = url;
+window.location.replace(url);
+}
+
+</script>
+</head>
+<body>
+<form th:action="@{/login}">
+
+
+    <div class="container" onsubmit="confirmInput()" action="/Notes/Notes_main/templates/NotesApp.html">
+        <label for="uname"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" id="uname" name="uname" required>
+
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" id="psw" name="psw" required>
+
+        <button type="submit" onclick="login()">Sign in</button>
+        <label>
+            <input type="checkbox" name="remember"> Remember me
+        </label>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+        <span class="psw">Forgot <a href="/Notes/Notes_main/templates/ForgotPassword.html">password?</a></span>
+        <p align="center">Don't have an account? <a href="/Notes/Notes_main/templates/Registration.html">Register here</a>.</p>
+    </div>
+    <div class="container" style="background-color:#f1f1f1">
+        <button type="button" class="cancelbtn">Cancel</button>
+    </div>
+</form>
+</body>
+</html>
+

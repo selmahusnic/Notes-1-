@@ -1,0 +1,136 @@
+<!DOCTYPE html "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head xmlns:th="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+    <meta charset="UTF-8">
+    <title>Notes App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    >
+    <style>
+    body {
+    margin: 0;
+    padding: 1;
+    background-color: #eee1c3;
+    background-size: cover;
+    background-position: center;
+    font-family: sans-serif;
+    }
+
+    * {
+    box-sizing: border-box;
+}
+.header{
+    background-color:#eee1c3;
+    color: #9f7d2d;
+    font-family: "Times New Roman", Times, serif;
+    margin: 0;
+    }
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 150px;
+    background-color:#f4ebd7;
+    font-family: "Times New Roman", Times, serif;
+}
+
+li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #9f7d2d;
+}
+
+li a:hover {
+    background-color: #d8ba74;
+    color: white;
+}
+
+.row {
+    width: 80%;
+    height: 50px;
+    margin: 0 auto 0 180px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color:  #f9f5eb;
+    font-size: 16px;
+    resize: yes;
+    color: #9f7d2d;
+    font-family: "Times New Roman", Times, serif;
+}
+.row input{
+    color: #9f7d2d;
+    font-family: "Times New Roman", Times, serif;
+    width: 90%;
+    background-color:  #f9f5eb;
+     border: 0px;
+    }
+
+.sidenav {
+    height: 100%;
+    width: 150px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #f4ebd7;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #9f7d2d;
+    display: block;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.sidenav a:hover {
+    color: #d8ba74;
+    color: white;
+}
+
+.divider{
+    width:10px;
+    height:auto;
+    display:inline-block;
+}
+
+
+</style>
+
+</head>
+<body>
+
+<div class="header"><h2><center><b>Notes App</b></center></h2></div>
+
+<div class="sidenav">
+    <a href="/Notes/Notes_main/templates/Notes.html">Notes</a>
+    <a href="/Notes/Notes_main/templates/Archived.html">Archived</a>
+    <a th:action="@{/logout}" method="post">Log out</a>
+</div>
+
+<div class="row input-wrapper">
+    <input formmethod="post" type="text" placeholder="Take a note...">
+       <i id="check" class="fa fa-check" style="font-size:20px" onclick="save" ></i>
+    <div class="divider"></div>
+        <i id="ellipsis-v" class="fa fa-ellipsis-v" style="font-size:20px"></i>
+    <div class="divider"></div>
+        <i id="trash" class="fa fa-trash" style="font-size:20px"></i>
+</div>
+
+
+
+
+
+</body>
+</html>
+
+
+var sendFormData = function(){
